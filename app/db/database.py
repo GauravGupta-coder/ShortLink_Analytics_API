@@ -6,7 +6,9 @@ from app.core.config import settings
 engine = create_async_engine(
     str(settings.DATABASE_URL),
     echo=settings.ENVIRONMENT == "development",
-    future=True
+    future=True,
+    pool_size=settings.POSTGRES_POOL_SIZE,
+    max_overflow=settings.POSTGRES_MAX_OVERFLOW
 )
 
 # Create session factory
